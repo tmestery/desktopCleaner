@@ -1,0 +1,30 @@
+# Clean your Desktop using my Basic Desktop Cleaner!
+
+import os
+import shutil
+
+# create empty list
+lis = []
+i = 1
+
+# create the clean up directory folder
+destinationdir = 'Cleanup Folder'
+
+# prevent the program from overwriting itself (folder already made)
+while os.path.exists(destinationdir):
+    destinationdir += str(i)
+    i += 1
+
+# goes through with adding the directory - we know one isn't created yet
+os.makedirs(destinationdir)
+
+# all elements on desktop added to list
+lis = os.listdir()
+
+# return all elements on desktop - while putting them into their folder
+# if it's the file itself - continues
+for element in lis:
+    print(element)
+    if element == __file__:
+        continue
+    shutil.move(element, destinationdir)
